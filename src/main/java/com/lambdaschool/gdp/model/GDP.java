@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class GDP {
 
-    private static final Logger logger = new LoggerFactory.getLogger(GDP.class);
+//    private static final Logger logger = new LoggerFactory.getLogger(GDP.class);
     //setting up the data types
     private static final AtomicLong counter = new AtomicLong();
     private long id;
@@ -19,8 +19,8 @@ public class GDP {
         this.name = name;
         this.gdp = gdp;
 
-        logger.info("We created a country named: " + this.name );
-        logger.debug("Im 99.9999999% sure we created a country with the the id of " + this.id );
+//        logger.info("We created a country named: " + this.name );
+//        logger.debug("Im 99.9999999% sure we created a country with the the id of " + this.id );
     }
 
     public GDP(GDP toClone) {
