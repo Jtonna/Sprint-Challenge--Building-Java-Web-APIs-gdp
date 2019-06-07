@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class GdpList {
 
     // initializes an array list for our data
-    public ArrayList<GDP> gdpArrayList = new ArrayList<GDP>();
+    public ArrayList<GDP> gdpList = new ArrayList<GDP>();
 
     // this is my data list. Its long. keep it collapsed in editor.
     public GdpList() {
@@ -112,6 +112,31 @@ public class GdpList {
         gdpList.add(new GDP("Latvia", "34286"));
         gdpList.add(new GDP("Sudan", "33249"));
 
+    }
+
+    public GDP findGDP(CheckGDP tester)
+    {
+        for (GDP x : gdpList)
+        {
+            if (tester.test(x))
+            {
+                return x;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<GDP> findGPDs(CheckGDP tester)
+    {
+        ArrayList<GDP> tempGdpList = new ArrayList<>();
+        for ( GDP x : gdpList)
+        {
+            if (tester.test(x))
+            {
+                tempGdpList.add(x);
+            }
+        }
+        return tempGdpList;
     }
 
 }
