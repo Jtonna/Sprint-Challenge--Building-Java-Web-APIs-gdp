@@ -59,8 +59,16 @@ public class GdpController
     }
 
     //localhost:2828/country/stats/median
-//    @GetMapping(value = "/country/stats/median")
+    @GetMapping(value = "/country/stats/median")
     // https://forgetcode.com/java/1296-median-calculation
+    public ResponseEntity<?> getByMedian(){
+        GdpApplication.ourGDPList.gdpList.sort((x1,x2) -> {
+            int placeholder1 = Integer.parseInt(x1.getGdp());
+            int placeholder2 = Integer.parseInt(x2.getGdp());
+            return placeholder2 - placeholder1;
+        });
+        
+    }
 
     //localhost:2828/economy/table
     @GetMapping(value = "/economy/table")
