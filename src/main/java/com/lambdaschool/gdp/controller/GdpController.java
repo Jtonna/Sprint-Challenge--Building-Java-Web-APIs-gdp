@@ -62,12 +62,22 @@ public class GdpController
     @GetMapping(value = "/country/stats/median")
     // https://forgetcode.com/java/1296-median-calculation
     public ResponseEntity<?> getByMedian(){
+        logger.info("Checking the economy.. Hold Up.");
         GdpApplication.ourGDPList.gdpList.sort((x1,x2) -> {
             int placeholder1 = Integer.parseInt(x1.getGdp());
             int placeholder2 = Integer.parseInt(x2.getGdp());
             return placeholder2 - placeholder1;
         });
-        
+        GDP theNewMedian;
+        logger.info("/country/stats/median was accessed");
+        if(GdpApplication.ourGDPList.gdpList.size() % 2 == 0 ){
+            int median = GdpApplication.ourGDPList.gdpList.size() / 2;
+            theNewMedian = GdpApplication.ourGDPList.findGDP(x -> x.getId() == median );
+        } else {
+            int median = (GdpApplication.ourGDPList.gdpList.size()/2) + 1;
+            theNewMedian = GdpApplication.ourGDPList.findGDP(x -> x.getId() == median );
+        }
+        return new ResponseEntity<>(theNewMedian, HttpStatus.OK);
     }
 
     //localhost:2828/economy/table
