@@ -22,10 +22,22 @@ public class GdpController
     public ResponseEntity<?> getCountriesByName(){
         logger.info("/names was accessed.");
         GdpApplication.ourGDPList.gdpList.sort((x1, x2) -> x1.getName().compareToIgnoreCase(x2.getName()));
-        // This should sort by name
+        // This should sort by name a-z
         return new ResponseEntity<>(GdpApplication.ourGDPList.gdpList, HttpStatus.OK);
     }
 
-    
+    // localhost:2828/economy
+    @GetMapping(value = "/economy", produces = {"application/json"})
+    public  ResponseEntity<?> getCountriesByGDP(){
+        logger.info("/economy was accessed.");
+        GdpApplication.ourGDPList.gdpList.sort((x1, x2) -> {
+            int placeholder1 = Integer.parseInt(x1.getGdp());
+            int placeholder2 = Integer.parseInt(x2.getGdp());
+            return placeholder2 - placeholder1 ;
+        });
+        //this should sort economies by highest GDP ot lowest GDP
+        return new ResponseEntity<>(GdpApplication.ourGDPList.gdpList, HttpStatus.OK);
+    }
+
 
 }
