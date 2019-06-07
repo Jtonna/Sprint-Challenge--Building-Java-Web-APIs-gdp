@@ -1,13 +1,12 @@
 package com.lambdaschool.gdp;
 
 import com.lambdaschool.gdp.model.GDP;
-
 import java.util.ArrayList;
 
 public class GdpList {
 
     // initializes an array list for our data
-    public ArrayList<GPD> gdpArrayList = new ArrayList<GDP>();
+    public ArrayList<GDP> gdpArrayList = new ArrayList<GDP>();
 
     // this is my data list. Its long. keep it collapsed in editor.
     public GdpList() {
