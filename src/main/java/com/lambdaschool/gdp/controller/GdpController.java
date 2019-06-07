@@ -80,8 +80,8 @@ public class GdpController
         return new ResponseEntity<>(theNewMedian, HttpStatus.OK);
     }
 
-    //localhost:2828/economy/table
-    @GetMapping(value = "/economy/table")
+    //localhost:2828/
+    @GetMapping(value = "/")
     public ModelAndView getEconTable(HttpServletRequest request){
         logger.trace(request.getRequestURI() + " has accessed the super top secret Illumanati Master Access to the worlds GDP");
         ModelAndView mav = new ModelAndView();
