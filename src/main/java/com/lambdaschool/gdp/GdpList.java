@@ -114,29 +114,4 @@ public class GdpList {
 
     }
 
-    public GDP findGDP(CheckGDP tester)
-    {
-        for (GDP x : gdpArrayList)
-        {
-            if (tester.test(x))
-            {
-                return x;
-            }
-        }
-        return null;
-    }
-
-    public ArrayList<GDP> findGPDs(CheckGDP tester)
-    {
-        ArrayList<GDP> tempGdpList = new ArrayList<>();
-        for ( GDP x : gdpArrayList)
-        {
-            if (tester.test(x))
-            {
-                tempGdpList.add(x);
-            }
-        }
-        return tempGdpList;
-    }
-    
 }
