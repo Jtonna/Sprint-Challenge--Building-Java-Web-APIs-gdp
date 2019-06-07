@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @RestController
@@ -56,4 +58,17 @@ public class GdpController
         return new ResponseEntity<>(rtnGDP, HttpStatus.OK);
     }
 
+    //localhost:2828/country/stats/median
+//    @GetMapping(value = "/country/stats/median")
+    // https://forgetcode.com/java/1296-median-calculation
+
+    //localhost:2828/economy/table
+    @GetMapping(value = "/economy/table")
+    public ModelAndView getEconTable(HttpServletRequest request){
+        logger.trace(request.getRequestURI() + " has accessed the super top secret Illumanati Master Access to the worlds GDP");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("gdptable");
+        mav.addObject("GdpList", GdpApplication.ourGDPList.gdpList);
+        return mav;
+    }
 }
