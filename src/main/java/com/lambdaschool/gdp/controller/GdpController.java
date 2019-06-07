@@ -2,11 +2,14 @@ package com.lambdaschool.gdp.controller;
 
 
 import com.lambdaschool.gdp.GdpApplication;
+import com.lambdaschool.gdp.exception.ResourceNotFoundException;
+import com.lambdaschool.gdp.model.GDP;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -39,5 +42,18 @@ public class GdpController
         return new ResponseEntity<>(GdpApplication.ourGDPList.gdpList, HttpStatus.OK);
     }
 
+    //localhost:2828/country/{id}
+    @GetMapping(value = "/country/{id}", produces = {"application/json"})
+    public ResponseEntity<?> getByID(@PathVariable long id){
+        logger.info("country/" + id + " has been accessed.");
+        GDP rtnGDP;
+        if(GdpApplication.ourGDPList.findGDP(x -> (x.getId() == id))== null){
+            throw new ResourceNotFoundException("Theres no country with the id of "+ id + ". Check with the Illuminati or an parallel earth.");
+        } else {
+            rtnGDP = GdpApplication.ourGDPList.findGDP(x -> (x.getId() == id));
+        }
+        // This is a mess. and hurt my brain trying to understand. I just copied and pasted from dogs and fixed things until IntelliJ quit nagging me that there were errors. Please send help.
+        return new ResponseEntity<>(rtnGDP, HttpStatus.OK);
+    }
 
 }
